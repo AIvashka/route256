@@ -1,1 +1,7 @@
 /bin
+
+/.idea
+
+.DS_Store
+
+loms/.DS_Store

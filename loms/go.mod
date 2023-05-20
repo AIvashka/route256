@@ -1,3 +1,3 @@
-module route256/loms
+module gitlab.ozon.dev/alexeyivashka/homework/loms
 
 go 1.19
