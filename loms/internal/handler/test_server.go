@@ -1,10 +1,11 @@
 package handler
 
 import (
+	"net/http"
+
 	"gitlab.ozon.dev/alexeyivashka/homework/loms/internal/storage"
 	"gitlab.ozon.dev/alexeyivashka/homework/loms/internal/usecase"
 	"go.uber.org/zap"
-	"net/http"
 )
 
 func StartTestServer() *http.Server {

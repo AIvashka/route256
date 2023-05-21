@@ -2,17 +2,12 @@ package loms_client
 
 //go:generate easyjson -all
 
-type OrderItem struct {
-	SKU   uint32
-	Count uint16
-}
-
 type CreateOrderRequest struct {
-	UserID int    `json:"user"`
-	Items  []Item `json:"items"`
+	UserID     int         `json:"user"`
+	OrderItems []OrderItem `json:"items"`
 }
 
-type Item struct {
+type OrderItem struct {
 	SKU   int `json:"sku"`
 	Count int `json:"count"`
 }
@@ -26,7 +21,7 @@ type CancelOrderRequest struct {
 }
 
 type StocksRequest struct {
-	SKU int `json:"SKU"`
+	SKU uint32 `json:"SKU"`
 }
 
 type CreateOrderResponse struct {

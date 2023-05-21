@@ -1,8 +1,9 @@
 package handler
 
 import (
-	"gitlab.ozon.dev/alexeyivashka/homework/loms/internal/usecase"
 	"net/http"
+
+	"gitlab.ozon.dev/alexeyivashka/homework/loms/internal/usecase"
 )
 
 type Handler struct {

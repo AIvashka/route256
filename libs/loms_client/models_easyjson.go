@@ -135,7 +135,7 @@ func easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient1(in 
 		}
 		switch key {
 		case "SKU":
-			out.SKU = int(in.Int())
+			out.SKU = uint32(in.Uint32())
 		default:
 			in.SkipRecursive()
 		}
@@ -153,7 +153,7 @@ func easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient1(out
 	{
 		const prefix string = ",\"SKU\":"
 		out.RawString(prefix[1:])
-		out.Int(int(in.SKU))
+		out.Uint32(uint32(in.SKU))
 	}
 	out.RawByte('}')
 }
@@ -398,10 +398,10 @@ func easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient5(in 
 			continue
 		}
 		switch key {
-		case "SKU":
-			out.SKU = uint32(in.Uint32())
-		case "Count":
-			out.Count = uint16(in.Uint16())
+		case "sku":
+			out.SKU = int(in.Int())
+		case "count":
+			out.Count = int(in.Int())
 		default:
 			in.SkipRecursive()
 		}
@@ -417,14 +417,14 @@ func easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient5(out
 	first := true
 	_ = first
 	{
-		const prefix string = ",\"SKU\":"
+		const prefix string = ",\"sku\":"
 		out.RawString(prefix[1:])
-		out.Uint32(uint32(in.SKU))
+		out.Int(int(in.SKU))
 	}
 	{
-		const prefix string = ",\"Count\":"
+		const prefix string = ",\"count\":"
 		out.RawString(prefix)
-		out.Uint16(uint16(in.Count))
+		out.Int(int(in.Count))
 	}
 	out.RawByte('}')
 }
@@ -483,7 +483,7 @@ func easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient6(in 
 				in.Delim('[')
 				if out.OrderItems == nil {
 					if !in.IsDelim(']') {
-						out.OrderItems = make([]OrderItem, 0, 8)
+						out.OrderItems = make([]OrderItem, 0, 4)
 					} else {
 						out.OrderItems = []OrderItem{}
 					}
@@ -630,80 +630,7 @@ func (v *ListOrderRequest) UnmarshalJSON(data []byte) error {
 func (v *ListOrderRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
 	easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient7(l, v)
 }
-func easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient8(in *jlexer.Lexer, out *Item) {
-	isTopLevel := in.IsStart()
-	if in.IsNull() {
-		if isTopLevel {
-			in.Consumed()
-		}
-		in.Skip()
-		return
-	}
-	in.Delim('{')
-	for !in.IsDelim('}') {
-		key := in.UnsafeFieldName(false)
-		in.WantColon()
-		if in.IsNull() {
-			in.Skip()
-			in.WantComma()
-			continue
-		}
-		switch key {
-		case "sku":
-			out.SKU = int(in.Int())
-		case "count":
-			out.Count = int(in.Int())
-		default:
-			in.SkipRecursive()
-		}
-		in.WantComma()
-	}
-	in.Delim('}')
-	if isTopLevel {
-		in.Consumed()
-	}
-}
-func easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient8(out *jwriter.Writer, in Item) {
-	out.RawByte('{')
-	first := true
-	_ = first
-	{
-		const prefix string = ",\"sku\":"
-		out.RawString(prefix[1:])
-		out.Int(int(in.SKU))
-	}
-	{
-		const prefix string = ",\"count\":"
-		out.RawString(prefix)
-		out.Int(int(in.Count))
-	}
-	out.RawByte('}')
-}
-
-// MarshalJSON supports json.Marshaler interface
-func (v Item) MarshalJSON() ([]byte, error) {
-	w := jwriter.Writer{}
-	easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient8(&w, v)
-	return w.Buffer.BuildBytes(), w.Error
-}
-
-// MarshalEasyJSON supports easyjson.Marshaler interface
-func (v Item) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient8(w, v)
-}
-
-// UnmarshalJSON supports json.Unmarshaler interface
-func (v *Item) UnmarshalJSON(data []byte) error {
-	r := jlexer.Lexer{Data: data}
-	easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient8(&r, v)
-	return r.Error()
-}
-
-// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
-func (v *Item) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient8(l, v)
-}
-func easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient9(in *jlexer.Lexer, out *CreateOrderResponse) {
+func easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient8(in *jlexer.Lexer, out *CreateOrderResponse) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -734,7 +661,7 @@ func easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient9(in 
 		in.Consumed()
 	}
 }
-func easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient9(out *jwriter.Writer, in CreateOrderResponse) {
+func easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient8(out *jwriter.Writer, in CreateOrderResponse) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -749,27 +676,27 @@ func easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient9(out
 // MarshalJSON supports json.Marshaler interface
 func (v CreateOrderResponse) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient9(&w, v)
+	easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient8(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v CreateOrderResponse) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient9(w, v)
+	easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient8(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *CreateOrderResponse) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient9(&r, v)
+	easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient8(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *CreateOrderResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient9(l, v)
+	easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient8(l, v)
 }
-func easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient10(in *jlexer.Lexer, out *CreateOrderRequest) {
+func easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient9(in *jlexer.Lexer, out *CreateOrderRequest) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -793,22 +720,22 @@ func easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient10(in
 		case "items":
 			if in.IsNull() {
 				in.Skip()
-				out.Items = nil
+				out.OrderItems = nil
 			} else {
 				in.Delim('[')
-				if out.Items == nil {
+				if out.OrderItems == nil {
 					if !in.IsDelim(']') {
-						out.Items = make([]Item, 0, 4)
+						out.OrderItems = make([]OrderItem, 0, 4)
 					} else {
-						out.Items = []Item{}
+						out.OrderItems = []OrderItem{}
 					}
 				} else {
-					out.Items = (out.Items)[:0]
+					out.OrderItems = (out.OrderItems)[:0]
 				}
 				for !in.IsDelim(']') {
-					var v7 Item
+					var v7 OrderItem
 					(v7).UnmarshalEasyJSON(in)
-					out.Items = append(out.Items, v7)
+					out.OrderItems = append(out.OrderItems, v7)
 					in.WantComma()
 				}
 				in.Delim(']')
@@ -823,7 +750,7 @@ func easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient10(in
 		in.Consumed()
 	}
 }
-func easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient10(out *jwriter.Writer, in CreateOrderRequest) {
+func easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient9(out *jwriter.Writer, in CreateOrderRequest) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -835,11 +762,11 @@ func easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient10(ou
 	{
 		const prefix string = ",\"items\":"
 		out.RawString(prefix)
-		if in.Items == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+		if in.OrderItems == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
 			out.RawString("null")
 		} else {
 			out.RawByte('[')
-			for v8, v9 := range in.Items {
+			for v8, v9 := range in.OrderItems {
 				if v8 > 0 {
 					out.RawByte(',')
 				}
@@ -854,27 +781,27 @@ func easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient10(ou
 // MarshalJSON supports json.Marshaler interface
 func (v CreateOrderRequest) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient10(&w, v)
+	easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient9(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v CreateOrderRequest) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient10(w, v)
+	easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient9(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *CreateOrderRequest) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient10(&r, v)
+	easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient9(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *CreateOrderRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient10(l, v)
+	easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient9(l, v)
 }
-func easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient11(in *jlexer.Lexer, out *CancelOrderResponse) {
+func easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient10(in *jlexer.Lexer, out *CancelOrderResponse) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -903,7 +830,7 @@ func easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient11(in
 		in.Consumed()
 	}
 }
-func easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient11(out *jwriter.Writer, in CancelOrderResponse) {
+func easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient10(out *jwriter.Writer, in CancelOrderResponse) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -913,27 +840,27 @@ func easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient11(ou
 // MarshalJSON supports json.Marshaler interface
 func (v CancelOrderResponse) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient11(&w, v)
+	easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient10(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v CancelOrderResponse) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient11(w, v)
+	easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient10(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *CancelOrderResponse) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient11(&r, v)
+	easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient10(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *CancelOrderResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient11(l, v)
+	easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient10(l, v)
 }
-func easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient12(in *jlexer.Lexer, out *CancelOrderRequest) {
+func easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient11(in *jlexer.Lexer, out *CancelOrderRequest) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -964,7 +891,7 @@ func easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient12(in
 		in.Consumed()
 	}
 }
-func easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient12(out *jwriter.Writer, in CancelOrderRequest) {
+func easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient11(out *jwriter.Writer, in CancelOrderRequest) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -979,23 +906,23 @@ func easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient12(ou
 // MarshalJSON supports json.Marshaler interface
 func (v CancelOrderRequest) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient12(&w, v)
+	easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient11(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v CancelOrderRequest) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient12(w, v)
+	easyjsonD2b7633eEncodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient11(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *CancelOrderRequest) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient12(&r, v)
+	easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient11(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *CancelOrderRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient12(l, v)
+	easyjsonD2b7633eDecodeGitlabOzonDevAlexeyivashkaHomeworkLibsLomsClient11(l, v)
 }

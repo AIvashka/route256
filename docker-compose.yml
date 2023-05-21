@@ -1,10 +1,10 @@
 version: "3.1"
 services:
-#  checkout:
-#    image: checkout
-#    build: ./checkout/
-#    ports:
-#      - "8080:8080"
+  checkout:
+    image: checkout
+    build: ./checkout/
+    ports:
+      - "8080:8080"
   loms:
     image: loms
     build: ./loms/

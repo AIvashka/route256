@@ -25,7 +25,7 @@ func main() {
 	}
 
 	go func() {
-		logger.Info("Starting Server")
+		logger.Info("starting loms server")
 		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			logger.Fatal("listen:%+s\n", zap.Error(err))
 		}

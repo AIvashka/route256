@@ -3,21 +3,17 @@ package handler_test
 import (
 	"bytes"
 	"encoding/json"
-	"gitlab.ozon.dev/alexeyivashka/homework/loms/internal/handler"
 	"net/http"
 	"testing"
+
+	"gitlab.ozon.dev/alexeyivashka/homework/loms/internal/handler"
 )
 
 var URL = "http://localhost:8080"
 
 func TestAPI(t *testing.T) {
 	server := handler.StartTestServer()
-	defer func(server *http.Server) {
-		err := server.Close()
-		if err != nil {
-
-		}
-	}(server)
+	defer server.Close()
 
 	client := &http.Client{}
 
