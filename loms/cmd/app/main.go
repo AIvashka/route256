@@ -8,7 +8,7 @@ import (
 	"syscall"
 	"time"
 
-	lg "gitlab.ozon.dev/alexeyivashka/homework/logger"
+	lg "gitlab.ozon.dev/alexeyivashka/homework/libs/logger"
 	h "gitlab.ozon.dev/alexeyivashka/homework/loms/internal/handler"
 	"go.uber.org/zap"
 )

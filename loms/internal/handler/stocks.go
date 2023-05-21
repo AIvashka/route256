@@ -4,8 +4,8 @@ import (
 	"context"
 	"net/http"
 
+	"gitlab.ozon.dev/alexeyivashka/homework/libs/srvwrapper"
 	"gitlab.ozon.dev/alexeyivashka/homework/loms/internal/domain/model"
-	"gitlab.ozon.dev/alexeyivashka/homework/srvwrapper"
 )
 
 func (h *Handler) Stocks(w http.ResponseWriter, r *http.Request) {

@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"gitlab.ozon.dev/alexeyivashka/homework/logger"
+	"gitlab.ozon.dev/alexeyivashka/homework/libs/logger"
 	"gitlab.ozon.dev/alexeyivashka/homework/loms/internal/storage"
 	"gitlab.ozon.dev/alexeyivashka/homework/loms/internal/usecase"
 )
