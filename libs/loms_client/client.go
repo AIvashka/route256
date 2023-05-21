@@ -3,7 +3,7 @@ package loms_client
 import (
 	"bytes"
 	"github.com/mailru/easyjson"
-	"io"
+	"gitlab.ozon.dev/alexeyivashka/homework/libs/utils"
 	"net/http"
 )
 
@@ -37,7 +37,7 @@ func (c *Client) Request(method, path string, body easyjson.Marshaler, handleRes
 }
 
 func (c *Client) CreateOrder(req *CreateOrderRequest) (*CreateOrderResponse, error) {
-	response, err := c.Request(http.MethodPost, "/createOrder", req, decodeInto(&CreateOrderResponse{}))
+	response, err := c.Request(http.MethodPost, "/createOrder", req, utils.DecodeInto(&CreateOrderResponse{}))
 	if err != nil {
 		return &CreateOrderResponse{}, nil
 	}
@@ -45,7 +45,7 @@ func (c *Client) CreateOrder(req *CreateOrderRequest) (*CreateOrderResponse, err
 }
 
 func (c *Client) OrderPaid(req *OrderPaidRequest) (*OrderPaidResponse, error) {
-	response, err := c.Request(http.MethodPost, "/orderPaid", req, decodeInto(&OrderPaidResponse{}))
+	response, err := c.Request(http.MethodPost, "/orderPaid", req, utils.DecodeInto(&OrderPaidResponse{}))
 	if err != nil {
 		return &OrderPaidResponse{}, nil
 	}
@@ -53,7 +53,7 @@ func (c *Client) OrderPaid(req *OrderPaidRequest) (*OrderPaidResponse, error) {
 }
 
 func (c *Client) CancelOrder(req *CancelOrderRequest) (*CancelOrderResponse, error) {
-	response, err := c.Request(http.MethodPost, "/cancelOrder", req, decodeInto(&CancelOrderResponse{}))
+	response, err := c.Request(http.MethodPost, "/cancelOrder", req, utils.DecodeInto(&CancelOrderResponse{}))
 	if err != nil {
 		return &CancelOrderResponse{}, nil
 	}
@@ -61,7 +61,7 @@ func (c *Client) CancelOrder(req *CancelOrderRequest) (*CancelOrderResponse, err
 }
 
 func (c *Client) ListOrder(req *ListOrderRequest) (*ListOrderResponse, error) {
-	response, err := c.Request(http.MethodPost, "/listOrder", req, decodeInto(&ListOrderResponse{}))
+	response, err := c.Request(http.MethodPost, "/listOrder", req, utils.DecodeInto(&ListOrderResponse{}))
 	if err != nil {
 		return &ListOrderResponse{}, nil
 	}
@@ -69,30 +69,10 @@ func (c *Client) ListOrder(req *ListOrderRequest) (*ListOrderResponse, error) {
 }
 
 func (c *Client) Stocks(req *StocksRequest) (*StocksResponse, error) {
-	response, err := c.Request(http.MethodPost, "/stocks", req, decodeInto(&StocksResponse{}))
+	response, err := c.Request(http.MethodPost, "/stocks", req, utils.DecodeInto(&StocksResponse{}))
 	if err != nil {
 		return &StocksResponse{}, nil
 	}
 	return response.(*StocksResponse), nil
 
-}
-
-func decodeInto(v easyjson.Unmarshaler) func(*http.Response) (interface{}, error) {
-	return func(resp *http.Response) (interface{}, error) {
-		err := decodeResponse(resp, v)
-		if err != nil {
-			return nil, err
-		}
-		return v, nil
-	}
-}
-
-func decodeResponse(resp *http.Response, v easyjson.Unmarshaler) error {
-	defer func(Body io.ReadCloser) {
-		err := Body.Close()
-		if err != nil {
-
-		}
-	}(resp.Body)
-	return easyjson.UnmarshalFromReader(resp.Body, v)
 }
