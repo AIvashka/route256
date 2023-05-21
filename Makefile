@@ -11,3 +11,8 @@ precommit:
 	cd checkout && make precommit
 	cd loms && make precommit
 	cd notifications && make precommit
+
+clear:
+	cd checkout && make clear
+	cd loms && make clear
+	cd notifications && make clear

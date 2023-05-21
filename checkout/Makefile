@@ -40,5 +40,5 @@ install-smartimports: bindir
 		mv ${BINDIR}/smartimports ${SMARTIMPORTS})
 
 clear:
-	rm -f bin
+	rm -rf bin
 	echo "REMOVED BIN"
