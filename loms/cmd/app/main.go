@@ -2,26 +2,32 @@ package main
 
 import (
 	"context"
+	lg "gitlab.ozon.dev/alexeyivashka/homework/libs/logger"
+	"gitlab.ozon.dev/alexeyivashka/homework/loms/cmd/app/config"
+	h "gitlab.ozon.dev/alexeyivashka/homework/loms/internal/handler"
+	"go.uber.org/zap"
 	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
-
-	lg "gitlab.ozon.dev/alexeyivashka/homework/libs/logger"
-	h "gitlab.ozon.dev/alexeyivashka/homework/loms/internal/handler"
-	"go.uber.org/zap"
 )
 
 func main() {
 
 	logger := lg.GetLogger()
 
+	cfg, err := config.LoadConfig()
+
+	if err != nil {
+		logger.Fatal("Error reading config file, %s", zap.Error(err))
+	}
+
 	handler := h.NewHandlerWithDependencies()
 	h.SetupRoutes(handler)
 
 	server := &http.Server{
-		Addr: ":8080",
+		Addr: cfg.ServerAddress,
 	}
 
 	go func() {

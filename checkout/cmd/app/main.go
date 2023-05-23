@@ -2,12 +2,14 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
 
+	"gitlab.ozon.dev/alexeyivashka/homework/checkout/cmd/app/config"
 	"gitlab.ozon.dev/alexeyivashka/homework/checkout/internal/app/checkout"
 	h "gitlab.ozon.dev/alexeyivashka/homework/checkout/internal/handler"
 	"gitlab.ozon.dev/alexeyivashka/homework/checkout/internal/storage"
@@ -21,13 +23,17 @@ func main() {
 
 	logger := lg.GetLogger()
 
-	lomsUrl := "loms:8080"
-	productServiceUrl := "route256.pavl.uk:8082"
-	token := "4BMs97cLIrXUNyWScmQHEscL"
+	cfg, err := config.LoadConfig(true)
 
-	lomsClient := loms_client.NewClient(lomsUrl)
+	if err != nil {
+		logger.Fatal("Error reading config file, %s", zap.Error(err))
+	}
+
+	fmt.Print(cfg)
+
+	lomsClient := loms_client.NewClient(cfg.LomsUrl)
 	mockCartRepository := storage.NewMockCartRepository()
-	productService := product_service_client.NewClient(productServiceUrl, token)
+	productService := product_service_client.NewClient(cfg.ProductServiceUrl, cfg.ProductServiceToken)
 
 	cs := checkout.NewService(lomsClient, mockCartRepository, productService)
 

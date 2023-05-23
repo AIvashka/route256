@@ -4,4 +4,4 @@
 
 .DS_Store
 
-loms/.DS_Store
+/cmd/app/config/.env

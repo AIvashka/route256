@@ -1,5 +1,8 @@
 FROM ubuntu:22.04
 
-ADD ./bin/app /app
+WORKDIR /app
 
-CMD ["/app"]
+ADD ./bin/app /app
+ADD ./cmd/app/config /app/config
+
+CMD ["/app/app"]
