@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"gitlab.ozon.dev/alexeyivashka/homework/loms/internal/domain/model"
-	repository2 "gitlab.ozon.dev/alexeyivashka/homework/loms/internal/domain/repository"
+	"gitlab.ozon.dev/alexeyivashka/homework/loms/internal/domain/repository"
 	"go.uber.org/zap"
 )
 
@@ -13,12 +13,12 @@ type CancelOrderUseCase interface {
 }
 
 type cancelOrderUseCase struct {
-	orderRepo     repository2.OrderRepository
-	warehouseRepo repository2.WarehouseRepository
+	orderRepo     repository.OrderRepository
+	warehouseRepo repository.WarehouseRepository
 	logger        *zap.Logger
 }
 
-func NewCancelOrderUseCase(or repository2.OrderRepository, wr repository2.WarehouseRepository, logger *zap.Logger) CancelOrderUseCase {
+func NewCancelOrderUseCase(or repository.OrderRepository, wr repository.WarehouseRepository, logger *zap.Logger) CancelOrderUseCase {
 	return &cancelOrderUseCase{
 		orderRepo:     or,
 		warehouseRepo: wr,

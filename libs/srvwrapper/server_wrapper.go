@@ -27,7 +27,7 @@ func (w *Wrapper[Req, Res]) ServeHTTP(resWriter http.ResponseWriter, httpReq *ht
 
 	var request Req
 	//w.logger.Info("got request", zap.Any("request", httpReq.Body))
-
+	defer httpReq.Body.Close()
 	err := json.NewDecoder(httpReq.Body).Decode(&request)
 	if err != nil {
 		resWriter.WriteHeader(http.StatusInternalServerError)

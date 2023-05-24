@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"gitlab.ozon.dev/alexeyivashka/homework/loms/internal/domain/model"
-	repository2 "gitlab.ozon.dev/alexeyivashka/homework/loms/internal/domain/repository"
+	"gitlab.ozon.dev/alexeyivashka/homework/loms/internal/domain/repository"
 	"go.uber.org/zap"
 )
 
@@ -13,12 +13,12 @@ type OrderPaidUseCase interface {
 }
 
 type orderPaidUseCase struct {
-	orderRepo     repository2.OrderRepository
-	warehouseRepo repository2.WarehouseRepository
+	orderRepo     repository.OrderRepository
+	warehouseRepo repository.WarehouseRepository
 	logger        *zap.Logger
 }
 
-func NewOrderPaidUseCase(or repository2.OrderRepository, wr repository2.WarehouseRepository, logger *zap.Logger) OrderPaidUseCase {
+func NewOrderPaidUseCase(or repository.OrderRepository, wr repository.WarehouseRepository, logger *zap.Logger) OrderPaidUseCase {
 	return &orderPaidUseCase{
 		orderRepo:     or,
 		warehouseRepo: wr,
